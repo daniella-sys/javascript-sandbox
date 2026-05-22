@@ -1,0 +1,126 @@
+//Break, Continue
+for(let i = 1; i <= 10; i++){
+  if(i ===8){
+   break;
+  }else if(i % 2 === 0){
+    console.log(i);
+  }
+}
+//[1;3]
+for(let i = 1; i <= 3; i++){
+  if(i === 3){
+    continue;
+  }
+}
+//[1;10]
+for(let i = 1; i <= 10; i++){
+  if(i === 4){
+    continue;
+  }else if(i === 7){
+    break;
+  }else{
+    console.log(i);                             //17;33
+  }
+}
+//[1;10]
+let money = 120;
+
+   for(let i = 1; i <= 10; i++){
+       let price = i * 10;
+       if(i === 5){
+        continue;
+       }else if( price > money){
+        break;
+       }else{
+        money -= price;
+        console.log("Товар куплено!");
+       }
+}
+//[1;10]
+let fuel = 100; 
+let asteroids = 0;
+    for(let i = 1; i <= 10; i++){
+      let cпаленепаливозарк = i * 5;
+      if(i === 4 || i === 8){
+        continue;
+        }else if(fuel <= cпаленепаливозарк){
+            break;
+        }else{
+          asteroids += 1;
+          fuel -= cпаленепаливозарк;
+          console.log("Рік" + i + "пройдено");
+        }
+        
+    }
+
+//[1;10]
+let atmCash = 250;
+for(let i = 1; i<= 10; i++ ){
+  let money = i * 10;
+  if(i === 7 || i === 3){
+      continue;
+     }else if(money > 50){
+       continue;
+  }else if (money > atmCash) {
+       console.log("No money");
+       break;
+  }else{
+    atmCash -= money;
+    console.log("Клієнт " + i + " зняв гроші");
+  }
+}
+//[1;10]
+let powerBank = 150;
+for(let i = 1; i <= 10; i++){
+  let q = 12 * i;
+      if(i === 6 || i === 2){
+        continue;
+      
+      }else if(q <= 30){
+        powerBank -= q;
+        continue;
+        
+      }else if(powerBank <= q){
+        console.log("Робот розрядився");
+        break;
+      }else{
+        powerBank -= q;
+        console.log("Смартфон № " + i + " успішно протестовано");
+      }
+}
+
+let inventory = 0;//(скільки дров уже зібрано)
+let energy = 40;
+for(let i = 1; i <= 10; i++){
+  let drkk = i * 3; //кількість
+      if(i === 3 || i === 9){
+         continue;
+        }else if(drkk >= 20){
+          continue;
+        }else if(energy <= drkk){
+          console.log("Персонаж занадто втомився!");
+          break;
+
+        }else{
+          energy -= drkk;
+          inventory += drkk;
+          console.log("Дерево № " + i + " зрубано!");
+        }
+}
+
+//[1;10]
+let serverMemory = 40; //memory
+for(let i = 1; i <= 10; i++){
+      let passwordLength = i * 2;
+      if(i === 4  || i === 7){
+        continue;
+      }else if(passwordLength <= 6){
+        continue;
+      }else if(serverMemory < passwordLength){
+        console.log("Сервер перевантажено!");
+        break;
+      }else{
+        serverMemory -= passwordLength;
+        console.log("Пароль № " + i + " успішно перевірено");
+      }
+}
