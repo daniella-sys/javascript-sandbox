@@ -1,0 +1,31 @@
+//імпортуємо саму бібліотеку
+import express from 'express';
+const app = express(); //запуск потім будемо працювати з app
+const PORT = 3000;
+
+app.use(express.json());
+let arr = [
+   {id: 1, name: "lowpoly_golden_trophy_cup.blend", polygons: 26 },
+   {id: 2, name: "official_pen.blend", polygons: 27}
+];
+
+//GET
+app.get('/models', (req, res) => {
+    res.json(arr);  //res відповідає за відповідь і json перетворює масив аби js зміг зчитати його
+});
+//POST
+app.post('/models', (req, res) => {
+    const newarr = {
+      id: arr.length + 1,
+      name: req.body.name,
+      polygons: req.body.polygons
+   };
+   //cтворення масиву 
+arr.push(newarr);
+res.status(201).json(newarr);
+});
+
+//виклик
+app.listen(PORT, () => {
+    console.log("====Сервер успішно запущено!" + "http://localhost:" + PORT);
+});
