@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Phone{
+  id Int @id @default(autoincrement())
+  modelName String
+  price Int
+  inStock Boolean
+}
+model Account{
+  id Int @id @default(autoincrement())
+  username String @unique
+  isActive Boolean
+}
+model Ticket{
+  id Int @id @default(autoincrement())
+  event String
+  price Int
+  isVIP  Boolean
+}
+model Task{
+  id Int @id @default(autoincrement())
+  title String
+  isCompleted Boolean
+}
