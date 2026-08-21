@@ -1,0 +1,82 @@
+ // This is your Prisma schema file,
+
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+
+
+generator client {
+
+  provider = "prisma-client-js"
+
+}
+
+
+
+datasource db {
+
+  provider = "sqlite"
+
+  url      = "file:./dev.db"
+
+}
+
+model User{
+
+  id Int @id @default(autoincrement())
+
+  email String @unique
+
+  name String
+
+  password String
+
+  createAt DateTime @default(now())
+
+  books Book[] //може бути багато книг
+
+  reviews Review[]
+
+}
+
+model Book{
+
+  id Int @id @default(autoincrement())
+
+  title String
+
+  author String
+
+  createAt DateTime @default(now())
+
+  authorId Int //id того хто завантажив 
+
+  reviews Review[] //книга може мати багато відгуків
+
+  user User @relation(fields: [authorId], references: [id], onDelete: Cascade) //зв'язок з користувачем
+
+}
+
+model Review{
+
+  id Int @id @default(autoincrement())
+
+  text String
+
+  rating Int
+
+  createAt DateTime @default(now())
+
+  authorId Int  //того хто написав 
+
+  bookId Int //до якої книги написав 
+
+  user User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  book Book @relation(fields: [bookId], references: [id], onDelete: Cascade)
+
+} перевір 
+
