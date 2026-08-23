@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+model User{
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  password String
+  bio String
+  posts Post[]
+  comments Comment[] //може мати багато статтів та коментарів
+  createAt DateTime @default(now())
+}
+model Post{
+  id Int @id @default(autoincrement())
+  title String
+  content String
+  authorId Int
+  createAt DateTime @default(now())
+  comments Comment[] //одна стаття може мати багато коментарів
+  user User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+model Comment{
+  id Int @id @default(autoincrement())
+  text String
+  authorId Int
+  createAt DateTime @default(now())
+  postId Int
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
